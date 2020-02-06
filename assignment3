@@ -1,0 +1,302 @@
+mysql> create database shop;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| Amazon             |
+| db1                |
+| mysql              |
+| performance_schema |
+| shop               |
+| sys                |
++--------------------+
+7 rows in set (0.00 sec)
+
+mysql> use shop;
+Database changed
+mysql> create table customer(customer_id int PRIMARY KEY NOT NULL, customer_name VARCHAR(20) NOT NULL);
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> desc customer;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| customer_id   | int(11)     | NO   | PRI | NULL    |       |
+| customer_name | varchar(20) | NO   |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> create table salesperson(salesperson_id int PRIMARY KEY NOT NULL, salesperson_name VARCHAR(20) NOT NULL);
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc salesperson;
++------------------+-------------+------+-----+---------+-------+
+| Field            | Type        | Null | Key | Default | Extra |
++------------------+-------------+------+-----+---------+-------+
+| salesperson_id   | int(11)     | NO   | PRI | NULL    |       |
+| salesperson_name | varchar(20) | NO   |     | NULL    |       |
++------------------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> create table(order_id int PRIMARY KEY NOT NULL, quantity VARCHAR(20) NOT NULL, customer_id INT, seller_id INT, FOREIGN KEY(customer_id) references customer(customer_id), FOREIGN KEY(seller_id) REFERENCES salesperson(seller_id));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(order_id int PRIMARY KEY NOT NULL, quantity VARCHAR(20) NOT NULL, customer_id I' at line 1
+mysql> create table orders(order_id int PRIMARY KEY NOT NULL, quantity VARCHAR(20) NOT NULL, customer_id INT, seller_id INT, FOREIGN KEY(customer_id) references customer(customer_id), FOREIGN KEY(seller_id) REFERENCES salesperson(seller_id));
+ERROR 1215 (HY000): Cannot add foreign key constraint
+mysql> create table orders(order_id int PRIMARY KEY NOT NULL, quantity VARCHAR(20) NOT NULL, customer_id INT, seller_id INT, FOREIGN KEY(customer_id) references customer(customer_id), FOREIGN KEY(seller_id) REFERENCES salesperson(seller_id));
+ERROR 1215 (HY000): Cannot add foreign key constraint
+mysql> create table orders(order_id int PRIMARY KEY NOT NULL, quantity VARCHAR(20) NOT NULL, customer_id INT, seller_id INT, FOREIGN KEY(customer_id) references customer(customer_id), FOREIGN KEY(seller_id) REFERENCES salesperson(seller_id));
+ERROR 1215 (HY000): Cannot add foreign key constraint
+mysql> create table orders(order_id int PRIMARY KEY NOT NULL, quantity VARCHAR(20) NOT NULL, customer_id INT, salesperson_id INT, FOREIGN KEY(customer_id) references customer(customer_id), FOREIGN KEY(salesperson_id) REFERENCES salesperson(salesperson_id));
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> desc salesperson;
++------------------+-------------+------+-----+---------+-------+
+| Field            | Type        | Null | Key | Default | Extra |
++------------------+-------------+------+-----+---------+-------+
+| salesperson_id   | int(11)     | NO   | PRI | NULL    |       |
+| salesperson_name | varchar(20) | NO   |     | NULL    |       |
++------------------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> desc orders;
++----------------+-------------+------+-----+---------+-------+
+| Field          | Type        | Null | Key | Default | Extra |
++----------------+-------------+------+-----+---------+-------+
+| order_id       | int(11)     | NO   | PRI | NULL    |       |
+| quantity       | varchar(20) | NO   |     | NULL    |       |
+| customer_id    | int(11)     | YES  | MUL | NULL    |       |
+| salesperson_id | int(11)     | YES  | MUL | NULL    |       |
++----------------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> desc customer;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| customer_id   | int(11)     | NO   | PRI | NULL    |       |
+| customer_name | varchar(20) | NO   |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> insert into customer (customer_id, customer_name) values ('101', 'Ashita');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into customer (customer_id, customer_name) values ('102', 'Zara');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into customer (customer_id, customer_name) values ('103', 'Neraj');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into customer (customer_id, customer_name) values ('104', 'Ashita');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into customer (customer_id, customer_name) values ('105', 'Smriti');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into customer (customer_id, customer_name) values ('106', 'Neraj');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into customer (customer_id, customer_name) values ('107', 'Ashita');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select* from customer;
++-------------+---------------+
+| customer_id | customer_name |
++-------------+---------------+
+|         101 | Ashita        |
+|         102 | Zara          |
+|         103 | Neraj         |
+|         104 | Ashita        |
+|         105 | Smriti        |
+|         106 | Neraj         |
+|         107 | Ashita        |
++-------------+---------------+
+7 rows in set (0.00 sec)
+
+mysql> desc salesperson;
++------------------+-------------+------+-----+---------+-------+
+| Field            | Type        | Null | Key | Default | Extra |
++------------------+-------------+------+-----+---------+-------+
+| salesperson_id   | int(11)     | NO   | PRI | NULL    |       |
+| salesperson_name | varchar(20) | NO   |     | NULL    |       |
++------------------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> insert into salesperson( salesperson_id, salesperson_name) values ('1111','sellergood');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into salesperson( salesperson_id, salesperson_name) values ('1112','seller2');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into salesperson( salesperson_id, salesperson_name) values ('1113','sellerbest');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into salesperson( salesperson_id, salesperson_name) values ('1114','sellgood');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into salesperson( salesperson_id, salesperson_name) values ('1115','wearebest');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into salesperson( salesperson_id, salesperson_name) values ('1116','seller6');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into salesperson( salesperson_id, salesperson_name) values ('1117','seller7');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from salesperson;
++----------------+------------------+
+| salesperson_id | salesperson_name |
++----------------+------------------+
+|           1111 | sellergood       |
+|           1112 | seller2          |
+|           1113 | sellerbest       |
+|           1114 | sellgood         |
+|           1115 | wearebest        |
+|           1116 | seller6          |
+|           1117 | seller7          |
++----------------+------------------+
+7 rows in set (0.00 sec)
+
+mysql> desc orders;
++----------------+-------------+------+-----+---------+-------+
+| Field          | Type        | Null | Key | Default | Extra |
++----------------+-------------+------+-----+---------+-------+
+| order_id       | int(11)     | NO   | PRI | NULL    |       |
+| quantity       | varchar(20) | NO   |     | NULL    |       |
+| customer_id    | int(11)     | YES  | MUL | NULL    |       |
+| salesperson_id | int(11)     | YES  | MUL | NULL    |       |
++----------------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> insert into orders('order_id','quantity','customer_id','salesperson_id') values ('111111','1','101','1111');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''order_id','quantity','customer_id','salesperson_id') values ('111111','1','101'' at line 1
+mysql> insert into orders('order_id','quantity','customer_id','salesperson_id') values ('111111','1','101','1111'));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''order_id','quantity','customer_id','salesperson_id') values ('111111','1','101'' at line 1
+mysql> insert into orders(order_id,quantity,customer_id,salesperson_id) values ('111111','1','101','1111');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into orders(order_id,quantity,customer_id,salesperson_id) values ('111112','1','102','1112');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into orders(order_id,quantity,customer_id,salesperson_id) values ('111113','1','103','1113');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into orders(order_id,quantity,customer_id,salesperson_id) values ('111114','1','104','1111');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into orders(order_id,quantity,customer_id,salesperson_id) values ('111115','1','105','1112');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> 
+mysql> insert into orders(order_id,quantity,customer_id,salesperson_id) values ('111116','1','106','1114');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into orders(order_id,quantity,customer_id,salesperson_id) values ('111117','1','107','1111');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from orders;
++----------+----------+-------------+----------------+
+| order_id | quantity | customer_id | salesperson_id |
++----------+----------+-------------+----------------+
+|   111111 | 1        |         101 |           1111 |
+|   111112 | 1        |         102 |           1112 |
+|   111113 | 1        |         103 |           1113 |
+|   111114 | 1        |         104 |           1111 |
+|   111115 | 1        |         105 |           1112 |
+|   111116 | 1        |         106 |           1114 |
+|   111117 | 1        |         107 |           1111 |
++----------+----------+-------------+----------------+
+7 rows in set (0.00 sec)
+
+mysql> select salesperson_name from salesperson where (select count(*) from orders where salesperson.salesperson_id=orders.salesperson_id)>1;
++------------------+
+| salesperson_name |
++------------------+
+| sellergood       |
+| seller2          |
++------------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from salesperson right join orders ON salesperson.salesperson_id=orders.salesperson_id;
++----------------+------------------+----------+----------+-------------+----------------+
+| salesperson_id | salesperson_name | order_id | quantity | customer_id | salesperson_id |
++----------------+------------------+----------+----------+-------------+----------------+
+|           1111 | sellergood       |   111111 | 1        |         101 |           1111 |
+|           1112 | seller2          |   111112 | 1        |         102 |           1112 |
+|           1113 | sellerbest       |   111113 | 1        |         103 |           1113 |
+|           1111 | sellergood       |   111114 | 1        |         104 |           1111 |
+|           1112 | seller2          |   111115 | 1        |         105 |           1112 |
+|           1114 | sellgood         |   111116 | 1        |         106 |           1114 |
+|           1111 | sellergood       |   111117 | 1        |         107 |           1111 |
++----------------+------------------+----------+----------+-------------+----------------+
+7 rows in set (0.00 sec)
+
+mysql> mysql> create index ind on customer(customer_name,customer_id);
+ERROR 1072 (42000): Key column 'customer_ntomer_name' doesn't exist in table
+mysql> create index ind on customer(customer__name,customer_id);
+ERROR 1072 (42000): Key column 'customer__name' doesn't exist in table
+mysql> create index ind on customer(customer_name,customer_id);
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> create index ind on salesperson(salesperson_name,salesperson_id);
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> create index inde on orders(order_id,quantity,customer_id,salesperson_id);
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> show index from customer;
++----------+------------+----------+--------------+---------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| Table    | Non_unique | Key_name | Seq_in_index | Column_name   | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment |
++----------+------------+----------+--------------+---------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| customer |          0 | PRIMARY  |            1 | customer_id   | A         |           6 |     NULL | NULL   |      | BTREE      |         |               |
+| customer |          1 | ind      |            1 | customer_name | A         |           4 |     NULL | NULL   |      | BTREE      |         |               |
+| customer |          1 | ind      |            2 | customer_id   | A         |           7 |     NULL | NULL   |      | BTREE      |         |               |
++----------+------------+----------+--------------+---------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+3 rows in set (0.00 sec)
+
+mysql> show index from orders;
++--------+------------+----------------+--------------+----------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| Table  | Non_unique | Key_name       | Seq_in_index | Column_name    | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment |
++--------+------------+----------------+--------------+----------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| orders |          0 | PRIMARY        |            1 | order_id       | A         |           6 |     NULL | NULL   |      | BTREE      |         |               |
+| orders |          1 | customer_id    |            1 | customer_id    | A         |           6 |     NULL | NULL   | YES  | BTREE      |         |               |
+| orders |          1 | salesperson_id |            1 | salesperson_id | A         |           4 |     NULL | NULL   | YES  | BTREE      |         |               |
+| orders |          1 | inde           |            1 | order_id       | A         |           7 |     NULL | NULL   |      | BTREE      |         |               |
+| orders |          1 | inde           |            2 | quantity       | A         |           7 |     NULL | NULL   |      | BTREE      |         |               |
+| orders |          1 | inde           |            3 | customer_id    | A         |           7 |     NULL | NULL   | YES  | BTREE      |         |               |
+| orders |          1 | inde           |            4 | salesperson_id | A         |           7 |     NULL | NULL   | YES  | BTREE      |         |               |
++--------+------------+----------------+--------------+----------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+7 rows in set (0.00 sec)
+
+mysql> show index from salesperson;
++-------------+------------+----------+--------------+------------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| Table       | Non_unique | Key_name | Seq_in_index | Column_name      | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment |
++-------------+------------+----------+--------------+------------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| salesperson |          0 | PRIMARY  |            1 | salesperson_id   | A         |           6 |     NULL | NULL   |      | BTREE      |         |               |
+| salesperson |          1 | ind      |            1 | salesperson_name | A         |           7 |     NULL | NULL   |      | BTREE      |         |               |
+| salesperson |          1 | ind      |            2 | salesperson_id   | A         |           7 |     NULL | NULL   |      | BTREE      |         |               |
++-------------+------------+----------+--------------+------------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+3 rows in set (0.00 sec)
+
+mysql> mysql> select order_id,salesperson.salesperson_name,orders.customer_id from salesperson right join orders on salesperson.salesperson_id=orders.salesperson_id;
++----------+------------------+-------------+
+| order_id | salesperson_name | customer_id |
++----------+------------------+-------------+
+|   111111 | sellergood       |         101 |
+|   111112 | seller2          |         102 |
+|   111113 | sellerbest       |         103 |
+|   111114 | sellergood       |         104 |
+|   111115 | seller2          |         105 |
+|   111116 | sellgood         |         106 |
+|   111117 | sellergood       |         107 |
++----------+------------------+-------------+
+7 rows in set (0.01 sec)
+
+mysql> 
+
