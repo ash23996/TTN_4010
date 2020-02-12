@@ -1,0 +1,33 @@
+.container-fluid 
+{    
+    padding: 0 !important;
+    
+    background-color: lightseagreen;
+    color:white;
+    font-family: 'Times New Roman', Times, serif;
+    
+    }
+.border {
+        display: inline-block;
+        width: 70px;
+        height: 70px;
+        margin: 6px;}
+.page-header {
+    color: darkblue;
+ 
+}
+#grid {
+
+    border: 2px solid;
+    padding-left: unset;
+    padding-right: unset;
+}
+#drop
+{
+    background-color: lightseagreen;
+    width:100%
+}
+#c2
+{
+    text-align:right;
+}

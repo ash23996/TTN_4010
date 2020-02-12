@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+    <title>FORM</title>
+  </head>
+  <body>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    
+    <div class="page-header">
+        <h3>TO THE NEW
+        <button type="button" class="btn btn-link float-right">Home</button>    
+        <button type="button" class="btn btn-link float-right">Quick</button> 
+    </h3> 
+      </div>
+      
+    <div class="col-md-4 offset-md-4" id=grid >
+    
+    <div class="container-fluid">
+        <h3>Bug Report</h3>
+    </div>
+    <div class="container">
+    <form>
+        <div class="form-group">
+          <label for="title">Title:*</label>
+          <input type="text" class="form-control" id="title" aria-describedby="titleHelp" placeholder="Enter Title">
+        </div>
+        <div class="form-group">
+            <label for="comment">TextArea:*</label>
+            <textarea class="form-control" rows="5" id="comment"></textarea>
+          </div>
+        
+
+        <div class="dropdown">
+            <h6>Operating System: </h6>
+            <select class="browser-default custom-select" id=drop>
+                <option selected>Windows Xp</option>
+                <option value="1">Ubuntu</option>
+                <option value="2">Macintosh</option>
+              </select>
+          </div>
+          <div class="dropdown">
+              <br>
+            <h6>Product: </h6>
+            <select class="browser-default custom-select" id=drop>
+                <option selected>Laptop</option>
+                <option value="1">USB</option>
+                <option value="2">Hard Disk</option>
+              </select>
+            
+          </div>  
+          <br>
+          <div class="form-group">
+          <label for="title">Version:*</label>
+          <input type="text" class="form-control" id="title" aria-describedby="titleHelp" placeholder="Enter Title">
+        </div>
+
+        <h6>License : </h6>
+        <div class="form-check-inline">
+            <label class="form-check-label" for="Free">
+              <input type="radio" class="form-check-input" id="Free" name="optradio" value="Free" checked>Free
+            </label>
+          </div>
+          
+          <div class="form-check-inline float-right">
+            <label class="form-check-label" for="Business">
+              <input type="radio" class="form-check-input" id="Business" name="optradio" value="option2">Business
+            </label>
+          </div>
+
+        <br>
+        <br>
+        <div class="dropdown">
+            <br>
+          <h6>Severity: </h6>
+          <select class="browser-default custom-select" id=drop>
+            <option selected>Critical</option>
+            <option value="1">Moderate</option>
+            <option value="2">Genaral</option>
+          </select>
+        </div>
+          <br>
+          <h6>Attachment: </h6>
+          <input type="file" id="myFile" name="filename2">
+            </div>
+
+          <br>
+          <div class="container-fluid " id=c2>
+            <button type="button" class="btn btn-primary">Send</button>
+          </div>
+
+      </form>
+      </div>
+      </div>
+    </div>
+</body>
+</html>
