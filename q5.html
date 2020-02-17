@@ -1,0 +1,73 @@
+<html>
+<head>
+    <script>
+
+var employee1=[{name:"Albert",age:21,salary:500,date:'22-aug-1997'},
+{name:"ashita",age:24,salary:5000,date:'22-aug-1997'},
+{name:"Abha",age:18,salary:6000,date:'22-aug-1997'},
+{name:"Prajjwal",age:22,salary:9000,date:'22-aug-1997'},
+{name:"vinod",age:19,salary:10000,date:'22-aug-1997'},
+{name:"robin",age:22,salary:10000,date:'22-aug-1997'},
+{name:"neraj",age:19,salary:10000,date:'22-aug-1997'}
+];
+
+
+
+document.write("filter all employees with salary greater than 5000");
+//filter all employees with salary greater than 5000
+
+var lis = employee1.filter(function (e) {
+    return e.salary > 5000;
+});
+console.log(lis);
+document.write("</br>");
+
+document.write(JSON.stringify(lis));
+
+document.write("</br>");
+
+document.write("group employee on the basis of their age");
+
+document.write("</br>");
+//group employee on the basis of their age
+var groups = {};
+for (var i = 0; i < employee1.length; i++) {
+  var age = employee1[i].age;
+  if (!groups[age]) {
+    groups[age] = [];
+  }
+  groups[age].push(employee1[i].name);
+}
+newArray = [];
+for (var age in groups) {
+    newArray.push({age: age, employess: groups[age]});
+}
+document.write( JSON.stringify(newArray));
+
+document.write("</br>");
+
+
+
+
+
+document.write("fetch employees with salary less than 1000 and age greater than 20");
+document.write("</br>");
+
+/*fetch employees with salary less than 1000 and age greater than 20. Then give them an increment
+ 5 times their salary.*/
+
+var increment=employee1.filter(function (e){
+    return(e.salary<1000&&e.age>20);
+
+});
+console.log(increment);
+document.write(JSON.stringify(increment));
+incrsal=increment.map(function(e){
+    e.salary=(5*e.salary);
+    return e;});
+console.log(incrsal);
+document.write(JSON.stringify(incrsal));
+ </script>
+</head>
+
+</html>
